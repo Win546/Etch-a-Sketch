@@ -6,7 +6,28 @@ let squareDiv = document.createElement("div");
 squareDiv.className = "square";
 
 
-for (let i = 0; i < 16; i++) {
+
+let numberSquare;
+howManySquare();
+
+function howManySquare() {
+   numberSquare=prompt("how many square do you want?", 16)
+ 
+  if (numberSquare > 100) {
+    alert("Too many square")
+    howManySquare();
+  } else if(numberSquare < 4){
+      alert("Too less square")
+    howManySquare();
+  }
+
+}
+
+
+
+
+
+for (let i = 0; i < numberSquare; i++) {
     body.appendChild(squareDiv.cloneNode(1));
 
 }
