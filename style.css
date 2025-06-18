@@ -2,11 +2,16 @@
     display: flex;
     margin: 0;
     flex-wrap: wrap;
-     border-collapse:collapse
+     border-collapse:collapse;
+     box-sizing: border-box;
 }
 .square{
-    width: 24%;
-    height: 30px;
-    border: 1px solid black;
+    width: 25%;
+    height:25vh;
+ background-color: pink;
     
+}
+
+.hover{
+    background-color: red;
 }
