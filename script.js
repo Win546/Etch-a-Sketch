@@ -1,72 +1,49 @@
-let body = document.getElementById("bodyGrid");
-
-let backgorundSquare = "rgb(255, 255, 30)"
-
+const body = document.getElementById("bodyGrid");
 let bright = 100;
-
-let squareDiv = document.createElement("div");
-
-squareDiv.className = "square";
-
-squareDiv.style.backgroundColor = backgorundSquare;
-
 let numberSquare;
+
 howManySquare();
 
 function howManySquare() {
     numberSquare = prompt("how many square for side do you wnat?", 16)
-
     if (numberSquare > 100) {
         alert("Too many square")
         howManySquare();
-    } else if (numberSquare < 4) {
-        alert("Too less square")
-        howManySquare();
-    } else (drawGrid(numberSquare))
-
+    }
+    else (
+        drawGrid(numberSquare)
+    )
 }
-
 
 
 function drawGrid(numberSquare) {
     let totNumberSquare = numberSquare * numberSquare;
-    let width = 720 / numberSquare;
-    let height = 720 / numberSquare
+    let size = 100 / numberSquare;
+    let max = 255;
+    let r = Math.floor(Math.random() * max);
+    let g = Math.floor(Math.random() * max);
+    let b = Math.floor(Math.random() * max);
 
-    squareDiv.style.width = width + "px";
-    squareDiv.style.height = height + "px";
-
-    squareDiv.style.filter = "brightness(" + bright + "%)";
     for (let i = 0; i < totNumberSquare; i++) {
-        body.appendChild(squareDiv.cloneNode(1));
+        let squareDiv = document.createElement("div");
+
+
+        let backgorundSquare = `rgb(${r}, ${g}, ${b})`
+
+        squareDiv.style.backgroundColor = backgorundSquare;
+
+        squareDiv.style.width = `${size}%`;
+   
+
+        squareDiv.style.filter = `brightness(${bright}%)`;
+        squareDiv.addEventListener('mouseover', () => {
+            squareDiv.classList.add("hover")
+        });
+        body.appendChild(squareDiv);
 
     }
-    bright = bright - 10;
+    bright = bright > 0 ? bright - 10 : bright;
 }
-
-
-
-
-document.addEventListener("mouseover", (e) => {
-    let hovered = e.target.classList[0];
-
-    switch (hovered) {
-        case "square":
-            e.target.classList.toggle("hover")
-
-            break;
-    }
-})
-
-document.addEventListener("mouseout", (e) => {
-    let hovered = e.target.classList[1];
-
-    switch (hovered) {
-        case "hover":
-            e.target.classList.toggle("hover")
-            break;
-    }
-})
 
 
 selectGrid.addEventListener("click", (e) => {
