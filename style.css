@@ -34,7 +34,9 @@ body {
     background-color: black !important;
 }
 
-
+h1{
+    margin: 0;
+}
 #selectGrid {
     text-align: center;
     margin: 0 auto;
