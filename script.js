@@ -1,5 +1,5 @@
 const body = document.getElementById("bodyGrid");
-let bright = 100;
+let opacity = 0.1;
 let numberSquare;
 
 howManySquare();
@@ -15,39 +15,41 @@ function howManySquare() {
     )
 }
 
-
 function drawGrid(numberSquare) {
-    let totNumberSquare = numberSquare * numberSquare;
-    let size = 100 / numberSquare;
-    let max = 255;
-    let r = Math.floor(Math.random() * max);
-    let g = Math.floor(Math.random() * max);
-    let b = Math.floor(Math.random() * max);
+    const totNumberSquare = numberSquare * numberSquare;
+    const size = 100 / numberSquare;
+    const max = 255;
+    const r = Math.floor(Math.random() * max);
+    const g = Math.floor(Math.random() * max);
+    const b = Math.floor(Math.random() * max);
+    const backgorundSquare = `rgb(${r}, ${g}, ${b})`
+    const squareDiv = document.createElement("div");
+    const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < totNumberSquare; i++) {
-        let squareDiv = document.createElement("div");
-
-
-        let backgorundSquare = `rgb(${r}, ${g}, ${b})`
-
-        squareDiv.style.backgroundColor = backgorundSquare;
-
-        squareDiv.style.width = `${size}%`;
-   
-
-        squareDiv.style.filter = `brightness(${bright}%)`;
-        squareDiv.addEventListener('mouseover', () => {
-            squareDiv.classList.add("hover")
-        });
-        body.appendChild(squareDiv);
-
+        const cloned = squareDiv.cloneNode();
+        cloned.style.backgroundColor = backgorundSquare;
+        cloned.style.width = `${size}%`;
+        // cloned.style.filter = `brightness(${bright}%)`; Too GPU INTENSIVE
+             cloned.style.opacity = `${opacity}`; 
+        fragment.appendChild(cloned);
     }
-    bright = bright > 0 ? bright - 10 : bright;
+   
+    body.appendChild(fragment);
+    opacity = opacity < 0.9 ? opacity + 0.10 : opacity;
 }
 
 
 selectGrid.addEventListener("click", (e) => {
     body.innerHTML = "";
     howManySquare();
-
 })
+
+body.addEventListener('mouseover', (e) => {
+    let hovered = e.target.tagName;
+    switch (hovered) {
+        case "DIV":
+            e.target.classList.add("hover")
+            break;
+    }
+});

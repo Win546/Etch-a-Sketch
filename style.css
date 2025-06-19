@@ -14,18 +14,21 @@ body {
     flex-wrap: wrap;
     border-collapse: collapse;
     box-sizing: border-box;
-    width: 70vw;
+    height: 80vh;
    aspect-ratio: 1;
    
 }
 #bodyGrid > div{
       aspect-ratio: 1;
+      transition: background-color 0.2s;
 }
 
 
 .hover {
-    filter: invert(1) !important;
+    /* filter: invert(1) !important; too GPU INTENSIVE */ 
+    background-color: black !important;
 }
+
 
 #selectGrid {
     text-align: center;
