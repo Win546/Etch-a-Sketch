@@ -19,18 +19,21 @@ function howManySquare() {
   } else if(numberSquare < 4){
       alert("Too less square")
     howManySquare();
-  }
+  } else (drawGrid(numberSquare))
 
 }
 
 
 
-
-
+function drawGrid(numberSquare){
 for (let i = 0; i < numberSquare; i++) {
     body.appendChild(squareDiv.cloneNode(1));
 
 }
+}
+
+
+
 
 document.addEventListener("mouseover", (e) => {
     let hovered = e.target.classList[0];
@@ -52,4 +55,11 @@ document.addEventListener("mouseout", (e) => {
 
             break;
     }
+})
+
+
+selectGrid.addEventListener("click", (e) => {
+ body.innerHTML="";
+howManySquare();
+
 })
