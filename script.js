@@ -9,6 +9,8 @@ function howManySquare() {
     if (numberSquare > 100) {
         alert("Too many square")
         howManySquare();
+    } else if (Number.isInteger(numberSquare) ) {
+         alert("That is not a integer")
     }
     else (
         drawGrid(numberSquare)
